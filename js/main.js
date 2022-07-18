@@ -72,11 +72,11 @@ function slideChange(slideNumber) {
     const country = key;
     console.log(country);
     console.log(values);
-    svg.append('path')
+    g.append('path')
         .data([values])
         .style("fill", "none")
-        .style("stroke", "gray")
-        .style("stroke-width", "2px")
+        .style("stroke", "lightgray")
+        .style("stroke-width", "1px")
         .attr("d", line);
   });
 }
