@@ -64,20 +64,21 @@ function slideChange(slideNumber) {
   console.log(groupedData);
 
   Array.from(groupedData, ([key, values]) => {
-    // key is Country Name and value is an array of all values
+    // key is Country Name and values is an array of all values
     // corresponding to the Country Name including Year,
     // Life Expectancy, and Health Expenditure 
     
     // Add one line per Country
     const country = key;
     console.log(country);
+    console.log(values);
     svg.append('path')
         .data(values)
         .style("fill", "none")
         .style("stroke", "gray")
         .style("stroke-width", "2px")
         .attr("d", line);
-  })
+  });
 }
 
 /** Function to be loaded with the page */
@@ -135,6 +136,10 @@ async function init() {
   
   // Load the data into an object indexed by Country and sorted by Country by Year
   const data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
+  data.forEach(d => {
+    d["Health Expenditure"] = +d["Health Expenditure"];
+    d["Life Expectancy"] = +d["Life Expectancy"];
+  });
   groupedData = d3.group(data, d => d.Country);
   console.log(groupedData);
   
