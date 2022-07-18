@@ -58,6 +58,7 @@ function slideChange(slideNumber) {
 
   // set up line generators
   const line = d3.line()
+      .defined(d => d.y >= 70)
       .x(d => xScale(d['Health Expenditure']))
       .y(d => yScale(d['Life Expectancy']));
 
@@ -75,9 +76,12 @@ function slideChange(slideNumber) {
     g.append('path')
         .data([values])
         .style("fill", "none")
-        .style("stroke", "lightgray")
+        .style("stroke", key == ? "lightgray")
         .style("stroke-width", "1px")
+        .style("marker-end", "url(#arrowhead)")
         .attr("d", line);
+    
+    
   });
 }
 
