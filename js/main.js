@@ -61,6 +61,8 @@ function slideChange(slideNumber) {
       .x(d => xScale(d['Health Expenditure']))
       .y(d => yScale(d['Life Expectancy']));
 
+  console.log(groupedData);
+  
   for (const [key, value] of Object.entries(groupedData)) {
     // key is Country Name and value is an array of all values
     // corresponding to the Country Name including Year,
