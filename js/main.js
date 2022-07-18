@@ -58,7 +58,7 @@ function slideChange(slideNumber) {
 
   // set up line generators
   const line = d3.line()
-      .defined(d => d.y >= 70)
+      .defined(d => d['Life Expectancy'] >= 70)
       .x(d => xScale(d['Health Expenditure']))
       .y(d => yScale(d['Life Expectancy']));
 
