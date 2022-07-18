@@ -46,7 +46,7 @@ function slideNext() {
  *  Change slide to the one indicated as a parameter
  * @param {number} slideNumber - Slide number visualization needs to jump to
 */
-async function slideChange(slideNumber) {
+function slideChange(slideNumber) {
   if (slideNumber === slideCurrent) { return; }
 
   // update rendering of pagination widget
@@ -61,7 +61,7 @@ async function slideChange(slideNumber) {
 }
 
 /** Function to be loaded with the page */
-function init() {
+async function init() {
   // Create the SVG and the plot area inside it
   svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
