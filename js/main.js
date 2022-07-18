@@ -73,7 +73,7 @@ function slideChange(slideNumber) {
     console.log(country);
     console.log(values);
     svg.append('path')
-        .data(values)
+        .data([values])
         .style("fill", "none")
         .style("stroke", "gray")
         .style("stroke-width", "2px")
