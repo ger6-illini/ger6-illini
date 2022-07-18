@@ -55,7 +55,7 @@ async function slideChange(slideNumber) {
 
   // update chart
   data = await d3.csv('../data/stats-oecd.csv');
-  
+  console.log(data);
 }
 
 /** Function to be loaded with the page */
