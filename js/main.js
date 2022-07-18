@@ -76,7 +76,7 @@ function slideChange(slideNumber) {
     g.append('path')
         .data([values])
         .style("fill", "none")
-        .style("stroke", key == ? "lightgray")
+        .style("stroke", key == "United States" ? "darkred" : "lightgray")
         .style("stroke-width", "1px")
         .style("marker-end", "url(#arrowhead)")
         .attr("d", line);
