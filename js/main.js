@@ -56,8 +56,25 @@ function slideChange(slideNumber) {
   d3.select("#previousButton").classed("disabled", slideCurrent === 1)
   d3.select("#nextButton").classed("disabled", slideCurrent === slideQuantity)
 
-  // update chart
+  // set up line generators
+  const line = d3.line()
+      .x(d => xScale(d['Health Expenditure']))
+      .y(d => yScale(d['Life Expectancy']));
 
+  for (const [key, value] of Object.entries(groupedData)) {
+    // key is Country Name and value is an array of all values
+    // corresponding to the Country Name including Year,
+    // Life Expectancy, and Health Expenditure 
+    
+    // Add one line per Country
+    const country = key;
+    svg.append('path')
+        .data(value)
+        .style("fill", "none")
+        .style("stroke", "gray")
+        .style("stroke-width", "2px")
+        .attr("d", line)
+  }      
 }
 
 /** Function to be loaded with the page */
@@ -115,7 +132,6 @@ async function init() {
   
   // Load the data into an object indexed by Country and sorted by Country by Year
   const data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
-  console.log(data);
   groupedData = d3.group(data, d => d.Country);
   console.log(groupedData);
   
