@@ -62,8 +62,8 @@ function slideChange(slideNumber) {
       .y(d => yScale(d['Life Expectancy']));
 
   console.log(groupedData);
-  
-  for (const [key, value] of Object.entries(groupedData)) {
+
+  Array.from(groupedData, ([key, values]) => {
     // key is Country Name and value is an array of all values
     // corresponding to the Country Name including Year,
     // Life Expectancy, and Health Expenditure 
@@ -72,12 +72,12 @@ function slideChange(slideNumber) {
     const country = key;
     console.log(country);
     svg.append('path')
-        .data(value)
+        .data(values)
         .style("fill", "none")
         .style("stroke", "gray")
         .style("stroke-width", "2px")
         .attr("d", line);
-  }      
+  })
 }
 
 /** Function to be loaded with the page */
