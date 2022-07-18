@@ -18,7 +18,7 @@ let svg;
 let g;
 
 // variable holding the loaded data
-let data;
+let groupedData;
 
 // D3 scale definitions
 let xScale;
@@ -114,13 +114,10 @@ async function init() {
     .text("Life Expectancy (Years)");
   
   // Load the data into an object indexed by Country and sorted by Country by Year
-  data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
+  const data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
   console.log(data);
-  nestedData = d3.nest()
-      .key(d => d.Country).sortKeys(d3.ascending)
-      .sortValues((a, b) => ((a.Year < b.Year) ? -1 : 1))
-      .entries(data);
-  console.log(nestedData);
+  groupedData = d3.group(data, d => d.Country);
+  console.log(groupedData);
   
   // Initially update with slide 1
   slideChange(1);
