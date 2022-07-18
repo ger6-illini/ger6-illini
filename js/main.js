@@ -17,6 +17,9 @@ const height = 600 - margin.top - margin.bottom;
 let svg;
 let g;
 
+// variable holding the loaded data
+let data;
+
 // D3 scale definitions
 let xScale;
 let yScale;
@@ -54,8 +57,7 @@ async function slideChange(slideNumber) {
   d3.select("#nextButton").classed("disabled", slideCurrent === slideQuantity)
 
   // update chart
-  data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
-  console.log(data);
+
 }
 
 /** Function to be loaded with the page */
@@ -111,6 +113,15 @@ function init() {
     .attr("transform", "rotate(-90)")
     .text("Life Expectancy (Years)");
   
+  // Load the data into an object indexed by Country and sorted by Country by Year
+  data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
+  console.log(data);
+  nestedData = d3.nest()
+      .key(d => d.Country).sortKeys(d3.ascending)
+      .sortValues((a, b) => ((a.Year < b.Year) ? -1 : 1))
+      .entries(data);
+  console.log(nestedData);
+  
   // Initially update with slide 1
-  slideChange(1);  
+  slideChange(1);
 }
