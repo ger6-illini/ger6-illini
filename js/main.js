@@ -68,12 +68,13 @@ function slideChange(slideNumber) {
     
     // Add one line per Country
     const country = key;
+    console.log(country);
     svg.append('path')
         .data(value)
         .style("fill", "none")
         .style("stroke", "gray")
         .style("stroke-width", "2px")
-        .attr("d", line)
+        .attr("d", line);
   }      
 }
 
