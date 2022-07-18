@@ -54,7 +54,7 @@ async function slideChange(slideNumber) {
   d3.select("#nextButton").classed("disabled", slideCurrent === slideQuantity)
 
   // update chart
-  data = await d3.csv('/data/stats-oecd.csv');
+  data = await d3.csv('/ger6-illini/data/stats-oecd.csv');
   console.log(data);
 }
 
