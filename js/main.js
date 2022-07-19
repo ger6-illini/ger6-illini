@@ -260,6 +260,86 @@ function slideChange(slideNumber) {
         .text(key);
     }
   });
+  
+  // Remove old annotations
+  d3.selectAll(".annotation-group").remove();
+  
+  // Add annotations corresponding to current slide
+  if (slideCurrent == 1) {
+    const annotations = [{
+      note: {
+        label: "The US is no different from the rest of the richest countries.",
+        title: "The 'normal' years"
+      },
+      //can use x, y directly instead of data
+      x: 28.0375 + margin.left,
+      y: 396.8000000000002 + margin.top,
+      dy: -137,
+      dx: 142,
+      subject: {
+        radius: 50,
+        radiusPadding: 0
+      }
+    }];
+    const makeAnnotations = d3.annotation()
+      .editMode(true)
+      .notePadding(15)
+      .type(d3.annotationCalloutCircle)
+      .annotations(annotations)
+    svg.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+  }
+  if (slideCurrent == 2) {
+    const annotations = [{
+      note: {
+        label: "A gap between the US and the rest of the richest countries gets wider and wider.",
+        title: "The 'abysm' years"
+      },
+      //can use x, y directly instead of data
+      x: 322.60575 + margin.left,
+      y: 170 + margin.top,
+      dy: -40,
+      dx: 142,
+      subject: {
+        radius: 60,
+        radiusPadding: 0
+      }
+    }];
+    const makeAnnotations = d3.annotation()
+      .editMode(true)
+      .notePadding(15)
+      .type(d3.annotationCalloutCircle)
+      .annotations(annotations)
+    svg.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+  }
+  if (slideCurrent == 3) {
+    const annotations = [{
+      note: {
+        label: "385,676 deaths in 2020 and 463,210 deaths in 2021.",
+        title: "COVID-19 hits!"
+      },
+      //can use x, y directly instead of data
+      x: 542.77585 + margin.left,
+      y: 198.4000000000001 + margin.top,
+      dy: 137,
+      dx: -162,
+      subject: {
+        radius: 50,
+        radiusPadding: 0
+      }
+    }];
+    const makeAnnotations = d3.annotation()
+      .editMode(true)
+      .notePadding(15)
+      .type(d3.annotationCalloutCircle)
+      .annotations(annotations)
+    svg.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+  }
 }
 
 /** Function to be loaded with the page */
