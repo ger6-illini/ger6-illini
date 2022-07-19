@@ -1,1 +1,208 @@
-﻿
+﻿/* Styles for Responsive Web Design taken from https://www.w3schools.com/css/css_rwd_intro.asp*/
+* {
+  box-sizing: border-box;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  /* border: 1px solid red; */
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.grid-container {
+  display: grid;
+  gap: 20px;
+  /* max-width: 1200px; */
+  margin-left: max(0px, calc((100% - 1200px) / 2));
+  margin-right: max(0px, calc((100% - 1200px) / 2));
+}
+.pagination {
+  display: inline-block;
+}
+.pagination a {
+  color: #0d6efd;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd; /* Gray */
+  transition: background-color .3s;
+}
+.pagination a.active {
+  background-color: #0d6efd;
+  color: white;
+}
+.pagination a.disabled {
+  color: lightgray;
+}
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+.dropbtn {
+  background-color: green;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropbtn:hover, .dropbtn:focus {
+  background-color: green;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown.hide {
+  display: none;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown a:hover {background-color: #ddd;}
+.show {display: block;}
+/* Styles for my visualization */
+html {
+  font-family: Optima, Arial, Helvetica, sans-serif;
+}
+small {
+  color: gray;
+}
+h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+h3 {
+  margin-top: 0px;
+}
+ul {
+  padding-left: 15px;
+  /* margin-bottom: 5px; */
+}
+li {
+  padding-left: 15px;
+  margin-bottom: 1em;
+}
+.slide-message-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.slide-message-content {
+  font-size: 15px;
+  padding: 20px;
+}
+.chart {
+  background-color: #f8f8f8;
+}
+.axis-label {
+  font-size: 20px;
+  text-anchor: middle;
+}
+.plot-area-label {
+  font-size: 40px;
+  text-anchor: end;
+  fill: gray;
+}
+.line_reference {
+  fill: none;
+  stroke-width: 2px;
+  stroke: red;
+}
+.line_active {
+  fill: none;
+  stroke-width: 2px;
+  stroke: green;
+}
+.line_inactive {
+  fill: none;
+  stroke-width: 1px;
+  stroke: lightgray;
+}
+.line_invisible {
+  fill: none;
+  stroke-width: 1px;
+  stroke: lightgray;
+  stroke-opacity: 0;
+}
+.line-country-label_reference {
+  font-size: 10px;
+  text-anchor: start;
+  fill: red;
+}
+.line-year-label_reference {
+  font-size: 10px;
+  text-anchor: end;
+  fill: red;
+}
+.line-label_active {
+  font-size: 10px;
+  text-anchor: start;
+  fill: green;
+  fill-opacity: 1;
+}
+.line-label_inactive {
+  font-size: 10px;
+  text-anchor: start;
+  fill: lightgray;
+  fill-opacity: 0;
+}
+.dots_reference {
+  stroke-width: 0;
+  fill: red;
+  fill-opacity: 0.3;
+}
+.dots_active {
+  stroke-width: 0;
+  fill: green;
+  fill-opacity: 0.3;
+}
+div.tooltip {	
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  font-size: 10px;
+  background: green;
+  color: white;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+div.tooltip.US {
+  background: red;
+}
