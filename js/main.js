@@ -33,6 +33,50 @@ const slideMessageContent = ["During the 1970s the US was similar to the rest of
 "After 1980, the gap between the United States and the rest of the countries grew larger and larger. One main reason for this gap is a rapid and continuous increase in the American health care costs due to a combination of several factors:<ul><li>Greed, e.g., pharmaceutical companies putting profits above patients and insurance executives being paid millions to deny coverage,<li>Healthcare administration expenses way higher than other countries, and<li>Overprovision of technologically sophisticated medical services even when they might not be needed.</ul>These high medical costs drove a large share of the americans to be uninsured (10 percent), and underinsured. For those having enough insurance coverage it seems life expectancy is not getting better due to a lack of consistency in routine care being enforced by the healthcare system. All this is well captured in <a href='https://www.harvardmagazine.com/2020/05/feature-forum-costliest-health-care'>this</a> article by David Cutler.",
 "COVID-19 brought a serious impact in life expectancy and health expenditure. All countries were affected and the US was not the exception. As of July 2022, number of deaths by COVID in the US has surpassed the one million mark. In addition, the number of excess deaths, i.e., deaths that might be associated to COVID-19 but not counted as such, is also over one million according to the CDC (see <a href='https://www.cdc.gov/nchs/nvss/vsrr/covid19/excess_deaths.htm'>this link </a>).",
 "Time to play with the data to discover your own insights. Select a country from the dropdown box below and compare annual data for that country against the US. Are there any countries that seemed to reduce the health care costs between one year and the next one? Can you figure out why? Do you see a significant change in life expectancy in specific years and the reasons for it? As you might have heard in <a href='https://en.wikipedia.org/wiki/The_X-Files'>The X-Files</a> TV series: The truth is out there.<br><br>Please note you can mouse over the dots representing data points to get info on it such as year, life expectancy in years, and health expenditure in PPP dollars."];
+const annotations = [
+{
+  note: {
+    label: "The US is no different from the rest of the richest countries.",
+    title: "The 'normal' years"
+  },
+  x: 28.0375 + margin.left,
+  y: 396.8000000000002 + margin.top,
+  dy: -137,
+  dx: 142,
+  subject: {
+    radius: 50,
+    radiusPadding: 0
+  }
+},
+{
+  note: {
+    label: "A gap between the US and the rest of the richest countries gets wider and wider.",
+    title: "The 'abysm' years"
+  },
+  x: 322.60575 + margin.left,
+  y: 170 + margin.top,
+  dy: -40,
+  dx: 142,
+  subject: {
+    radius: 60,
+    radiusPadding: 0
+  }
+},
+{
+  note: {
+    label: "385,676 deaths in 2020 and 463,210 deaths in 2021.",
+    title: "COVID-19 hits!"
+  },
+  //can use x, y directly instead of data
+  x: 542.77585 + margin.left,
+  y: 198.4000000000001 + margin.top,
+  dy: 137,
+  dx: -162,
+  subject: {
+    radius: 50,
+    radiusPadding: 0
+  }
+}];
 let selectedCountry = ""; // selected country in last slide
 
 let mapCountryToLocation;
@@ -265,77 +309,12 @@ function slideChange(slideNumber) {
   d3.selectAll(".annotation-group").remove();
   
   // Add annotations corresponding to current slide
-  if (slideCurrent == 1) {
-    const annotations = [{
-      note: {
-        label: "The US is no different from the rest of the richest countries.",
-        title: "The 'normal' years"
-      },
-      //can use x, y directly instead of data
-      x: 28.0375 + margin.left,
-      y: 396.8000000000002 + margin.top,
-      dy: -137,
-      dx: 142,
-      subject: {
-        radius: 50,
-        radiusPadding: 0
-      }
-    }];
+  // (except last slide that has no annotations)
+  if (slideCurrent < slideQuantity) {
     const makeAnnotations = d3.annotation()
-      .editMode(true)
       .notePadding(15)
       .type(d3.annotationCalloutCircle)
-      .annotations(annotations)
-    svg.append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations);
-  }
-  if (slideCurrent == 2) {
-    const annotations = [{
-      note: {
-        label: "A gap between the US and the rest of the richest countries gets wider and wider.",
-        title: "The 'abysm' years"
-      },
-      //can use x, y directly instead of data
-      x: 322.60575 + margin.left,
-      y: 170 + margin.top,
-      dy: -40,
-      dx: 142,
-      subject: {
-        radius: 60,
-        radiusPadding: 0
-      }
-    }];
-    const makeAnnotations = d3.annotation()
-      .editMode(true)
-      .notePadding(15)
-      .type(d3.annotationCalloutCircle)
-      .annotations(annotations)
-    svg.append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations);
-  }
-  if (slideCurrent == 3) {
-    const annotations = [{
-      note: {
-        label: "385,676 deaths in 2020 and 463,210 deaths in 2021.",
-        title: "COVID-19 hits!"
-      },
-      //can use x, y directly instead of data
-      x: 542.77585 + margin.left,
-      y: 198.4000000000001 + margin.top,
-      dy: 137,
-      dx: -162,
-      subject: {
-        radius: 50,
-        radiusPadding: 0
-      }
-    }];
-    const makeAnnotations = d3.annotation()
-      .editMode(true)
-      .notePadding(15)
-      .type(d3.annotationCalloutCircle)
-      .annotations(annotations)
+      .annotations([annotations[slideCurrent - 1]])
     svg.append("g")
         .attr("class", "annotation-group")
         .call(makeAnnotations);
